@@ -5,9 +5,8 @@ echo "Set the domain for this project"
 
 echo "New domain:(eg newdomain.com)"
 read replacement
-echo "Replacing all occurences of $existing with $replacement in files matching $filepattern"
+echo "Replacing all occurences of example.com with $replacement in files matching $filepattern"
 
-#find . -name '*.conf' -o -name '*.yml' -print0 | xargs -0 sed -i '' -e "s/$existing/$replacement/g"
 
 for filename in `find . -name '*.conf' -o -name '*.yml'`; do
   sed -i "s/example.com/$replacement/g" $filename
@@ -22,7 +21,7 @@ done
 
 echo "MYSQL_DATABASE:"
 read MYSQL_DATABASE
-sed -i "s/exampledb/$MYSQL_DATABASE/g" ./.env
+sed -i "s/exampledb/$MYSQL_DATABASE/g" ./docker-compose.yml
 
 echo "MYSQL_ROOT_PASSWORD:"
 read MYSQL_ROOT_PASSWORD
