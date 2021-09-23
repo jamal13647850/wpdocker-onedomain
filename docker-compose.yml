@@ -1,0 +1,73 @@
+version: "3.1"
+services:
+  db:
+    image: mysql:8.0.26
+    container_name: "db" 
+    restart: unless-stopped
+    ports: 
+      - "3108:3306"
+    env_file: .env
+    environment:
+        - MYSQL_DATABASE=exampledb
+    volumes:
+        - dbdata:/var/lib/mysql 
+    command: '--default-authentication-plugin=mysql_native_password'
+    networks:
+        - app-network 
+  wordpress:
+    image: wordpress:5.8.1-php8.0-fpm-alpine
+    container_name: wordpress
+    restart: unless-stopped
+    depends_on:
+      - db
+      - cache
+    env_file: .env
+    environment:
+      - WORDPRESS_DB_HOST=db:3306
+      - WORDPRESS_DB_USER=$MYSQL_USER
+      - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
+      - WORDPRESS_DB_NAME=exampledb
+    volumes:
+      - www:/var/www/html
+    networks:
+      - app-network
+  webserver:
+    image: nginx:1.21.3-alpine
+    container_name: webserver
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - www:/var/www/html
+      - ./nginx:/etc/nginx/conf.d
+      - certbot-etc:/etc/letsencrypt
+    networks:
+      - app-network 
+  cache:
+    image: redis:6.2.5-alpine
+    container_name: cache
+    ports:
+      - 6379:6379    
+    restart: unless-stopped 
+    networks:
+      - app-network   
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    depends_on:
+      - webserver
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - www:/var/www/html
+    command: certonly --webroot --force-renewal --webroot-path=/var/www/html --email yourmail@gmail.com --agree-tos --no-eff-email -d example.com -d www.example.com
+                
+                
+volumes:
+  certbot-etc:
+  www:
+  dbdata:
+  
+networks:
+  app-network:
+    driver: bridge
