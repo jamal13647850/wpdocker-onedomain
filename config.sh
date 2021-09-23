@@ -19,6 +19,11 @@ for filename in `find . -name '*.conf' -o -name '*.yml'`; do
   sed -i "s/yourmail@gmail.com/$email/g" $filename
 done
 
+
+echo "MYSQL_DATABASE:"
+read MYSQL_DATABASE
+sed -i "s/exampledb/$MYSQL_DATABASE/g" ./.env
+
 echo "MYSQL_ROOT_PASSWORD:"
 read MYSQL_ROOT_PASSWORD
 sed -i "s/mysqlrootpassword/$MYSQL_ROOT_PASSWORD/g" ./.env
