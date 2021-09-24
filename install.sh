@@ -41,5 +41,5 @@ docker-compose up -d
 docker logs certbot
 
 rm -rfv ./nginx/nginx.conf
-cp ./nginxTemplate/afterFirstRun.conf ./nginx/nginx.conf
+cp -v ./nginxTemplate/afterFirstRun.conf ./nginx/nginx.conf
 docker restart webserver
