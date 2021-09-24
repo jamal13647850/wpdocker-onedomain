@@ -19,6 +19,11 @@ for filename in `find . -name '*.conf' -o -name '*.yml'`; do
 done
 
 
+
+
+chmod +x ./docker-compose.yml
+chmod +x ./.env
+
 echo "MYSQL_DATABASE:"
 read MYSQL_DATABASE
 sed -i "s/exampledb/$MYSQL_DATABASE/g" ./docker-compose.yml
