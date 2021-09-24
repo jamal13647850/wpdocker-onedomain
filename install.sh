@@ -46,3 +46,5 @@ sleep 60
 rm -rfv ./nginx/nginx.conf
 cp -v ./nginxTemplate/afterFirstRun.conf ./nginx/nginx.conf
 docker restart webserver
+sleep 20
+docker ps -a
