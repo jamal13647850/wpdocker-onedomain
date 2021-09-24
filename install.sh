@@ -21,8 +21,11 @@ done
 
 
 
-chmod +x ./docker-compose.yml
-chmod +x ./.env
+chmod 775 ./docker-compose.yml
+chmod 775 ./.env
+chmod +x automaticSSLupdate.sh
+chmod 775 ./nginxTemplate/afterFirstRun.conf
+chmod 775 ./nginxTemplate/firstRun.conf
 
 echo "MYSQL_DATABASE:"
 read MYSQL_DATABASE
