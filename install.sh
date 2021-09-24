@@ -38,8 +38,11 @@ sed -i "s/mysqlpassword/$MYSQL_PASSWORD/g" ./.env
 mkdir -v nginx
 cp -v ./nginxTemplate/firstRun.conf ./nginx/nginx.conf
 docker-compose up -d
+
+sleep 60
 docker logs certbot
 
+sleep 60
 rm -rfv ./nginx/nginx.conf
 cp -v ./nginxTemplate/afterFirstRun.conf ./nginx/nginx.conf
 docker restart webserver
