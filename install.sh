@@ -35,6 +35,7 @@ echo "MYSQL_PASSWORD:"
 read MYSQL_PASSWORD
 sed -i "s/mysqlpassword/$MYSQL_PASSWORD/g" ./.env
 
+mkdir -v nginx
 cp -v ./nginxTemplate/firstRun.conf ./nginx/nginx.conf
 docker-compose up -d
 docker logs certbot
