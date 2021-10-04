@@ -43,6 +43,10 @@ echo "MYSQL_PASSWORD:"
 read MYSQL_PASSWORD
 sed -i "s/mysqlpassword/$MYSQL_PASSWORD/g" ./.env
 
+echo "WORDPRESS_TABLE_PREFIX:(eg wp)"
+read WORDPRESS_TABLE_PREFIX
+sed -i "s/wp/$WORDPRESS_TABLE_PREFIX/g" ./.env
+
 mkdir -v nginx
 cp -v ./nginxTemplate/firstRun.conf ./nginx/nginx.conf
 docker-compose up -d
