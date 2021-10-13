@@ -47,6 +47,11 @@ echo "WORDPRESS_TABLE_PREFIX:(eg wp)"
 read WORDPRESS_TABLE_PREFIX
 sed -i "s/wp/$WORDPRESS_TABLE_PREFIX/g" ./.env
 
+
+echo "Please enter redis password:"
+read redispassword
+sed -i "s/yourredispassword/$redispassword/g" ./docker-compose.yml
+
 mkdir -v nginx
 cp -v ./nginxTemplate/firstRun.conf ./nginx/nginx.conf
 docker-compose up -d
