@@ -5,17 +5,20 @@ services:
     container_name: "db" 
     restart: unless-stopped
     ports: 
-      - "3108:3306"
+      - "hostdbport:3306"
     env_file: .env
     environment:
         - MYSQL_DATABASE=exampledb
     volumes:
-        - dbdata:/var/lib/mysql 
+        - dbdata:/var/lib/mysql
+        - /my/custom:/etc/mysql/conf.d 
     command: '--default-authentication-plugin=mysql_native_password'
     networks:
         - app-network 
   wordpress:
-    image: wordpress:5.8.1-php8.0-fpm-alpine
+    build:
+      context: ./dockerFiles
+      dockerfile: wordpress
     container_name: wordpress
     restart: unless-stopped
     depends_on:
@@ -27,6 +30,11 @@ services:
       - WORDPRESS_DB_USER=$MYSQL_USER
       - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
       - WORDPRESS_DB_NAME=exampledb
+      - WORDPRESS_CONFIG_EXTRA= |
+          define('WP_REDIS_HOST', cache );
+          define('WP_REDIS_PORT', 6379);
+          define('WP_REDIS_PASSWORD', yourredispassword);
+          define('WP_MEMORY_LIMIT', '5120M');
     volumes:
       - www:/var/www/html
     networks:
@@ -48,7 +56,7 @@ services:
     image: redis:6.2.5-alpine
     container_name: cache
     ports:
-      - 6379:6379    
+      - redisport:6379    
     restart: unless-stopped 
     command: redis-server --requirepass yourredispassword
     networks:

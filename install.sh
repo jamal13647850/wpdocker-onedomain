@@ -42,6 +42,11 @@ sed -i "s/mysqluser/$MYSQL_USER/g" ./.env
 echo "MYSQL_PASSWORD:"
 read MYSQL_PASSWORD
 sed -i "s/mysqlpassword/$MYSQL_PASSWORD/g" ./.env
+sed -i "s/mysqluser/$MYSQL_USER/g" ./.env
+
+echo "Host DB Port:(eg 3108)"
+read hostdbport
+sed -i "s/hostdbport/$hostdbport/g" ./docker-compose.yml
 
 echo "WORDPRESS_TABLE_PREFIX:(eg wp)"
 read WORDPRESS_TABLE_PREFIX
@@ -51,6 +56,11 @@ sed -i "s/wp/$WORDPRESS_TABLE_PREFIX/g" ./.env
 echo "Please enter redis password:"
 read redispassword
 sed -i "s/yourredispassword/$redispassword/g" ./docker-compose.yml
+
+
+echo "Please enter redis port:"
+read redisport
+sed -i "s/redisport/$redisport/g" ./docker-compose.yml
 
 mkdir -v nginx
 cp -v ./nginxTemplate/firstRun.conf ./nginx/nginx.conf
