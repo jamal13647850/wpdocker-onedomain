@@ -2,4 +2,4 @@ innodb_buffer_pool_size=1G
 key_buffer_size=2G 
 max_allowed_packet = 256M 
 max_connections=250 
-thread_cache_size = 192 sdcdscdscds=4654654
+thread_cache_size = 192
