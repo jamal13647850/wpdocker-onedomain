@@ -75,3 +75,12 @@ cp -v ./nginxTemplate/afterFirstRun.conf ./nginx/nginx.conf
 docker restart webserver
 sleep 20
 docker ps -a
+
+
+#write out current crontab
+crontab -l > mycron
+#echo new cron into cron file
+echo "*/29 * * * * docker exec -it webserver rm -rf ./etc/nginx-cache/" >> mycron
+#install new cron file
+crontab mycron
+rm mycron
