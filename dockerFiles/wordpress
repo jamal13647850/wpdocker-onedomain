@@ -1,4 +1,5 @@
 FROM wordpress:5.8.1-php8.0-fpm-alpine
 RUN apk update && apk upgrade && apk add mysql-client && apk add nano && apk add libxml2-dev && docker-php-ext-install soap && wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
+RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing kakoune
 COPY custom.ini $PHP_INI_DIR/conf.d/
-RUN docker-php-ext-configure gmp && docker-php-ext-install gmp && echo extension=gmp.so > $PHP_INI_DIR/conf.d/gmp.ini
+RUN docker-php-ext-configure gmp && docker-php-ext-install gmp 
