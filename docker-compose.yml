@@ -36,6 +36,7 @@ services:
           define('WP_REDIS_PORT', 6379);
           define('WP_REDIS_PASSWORD', 'yourredispassword');
           define('WP_MEMORY_LIMIT', '5120M');
+          define('DISABLE_WP_CRON', true);
     volumes:
       - www:/var/www/html
     networks:
