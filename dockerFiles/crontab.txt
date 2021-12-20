@@ -1,0 +1,2 @@
+*/5 * * * * /usr/local/bin/php -q /var/www/html/wp-cron.php
+
