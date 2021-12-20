@@ -2,7 +2,21 @@
 
 git clone https://github.com/prasathmani/tinyfilemanager.git ./dockerFiles/fm
 
+chmod +x ./nginx/helpers/cloudflare-ip-sync.sh
+./nginx/helpers/cloudflare-ip-sync.sh
 
+echo "Allow IP 1 for filemanager"
+read allowip1
+sed -i "s/allowip1/$allowip1/g" ./nginx/helpers/filemanager.conf
+
+echo "Allow IP 2 for filemanager"
+read allowip2
+sed -i "s/allowip2/$allowip2/g" ./nginx/helpers/filemanager.conf
+
+echo "User for filemanager basic auth:(eg developer)"
+read authuser
+sudo dnf install -y httpd-tools
+sudo htpasswd -c ./nginx/helpers/.htpasswd authuser
 
 echo "Set the domain for this project"
 
