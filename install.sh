@@ -16,7 +16,7 @@ sed -i "s/allowip2/$allowip2/g" ./nginx/helpers/filemanager.conf
 echo "User for filemanager basic auth:(eg developer)"
 read authuser
 sudo dnf install -y httpd-tools
-sudo htpasswd -c ./nginx/helpers/.htpasswd authuser
+sudo htpasswd -c ./nginx/helpers/.htpasswd $authuser
 
 echo "Set the domain for this project"
 
