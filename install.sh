@@ -1,5 +1,8 @@
 #!/bin/bash
 
+git clone https://github.com/prasathmani/tinyfilemanager.git ./dockerFiles/fm
+
+
 
 echo "Set the domain for this project"
 
