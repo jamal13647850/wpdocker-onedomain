@@ -40,7 +40,7 @@ done
 
 chmod 775 ./docker-compose.yml
 chmod 775 ./.env
-chmod +x automaticSSLupdate.sh
+chmod +x setCronJobs.sh
 chmod 775 ./nginxTemplate/afterFirstRun.conf
 chmod 775 ./nginxTemplate/firstRun.conf
 
