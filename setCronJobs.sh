@@ -11,6 +11,7 @@ crontab -l > mycron
 echo "0 0 3 * * docker restart certbot >> $logpath/certbot.log 2>&1" >> mycron
 echo "0 */12 * * * docker exec wordpress /usr/sbin/crond" >> mycron
 echo "@reboot docker exec wordpress /usr/sbin/crond" >> mycron
+echo "" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
