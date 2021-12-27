@@ -8,10 +8,12 @@ chmod +x ./nginx/helpers/cloudflare-ip-sync.sh
 echo "Allow IP 1 for filemanager"
 read allowip1
 sed -i "s/allowip1/$allowip1/g" ./nginx/helpers/filemanager.conf
+sed -i "s/allowip1/$allowip1/g" ./nginx/helpers/wordpress.conf
 
 echo "Allow IP 2 for filemanager"
 read allowip2
 sed -i "s/allowip2/$allowip2/g" ./nginx/helpers/filemanager.conf
+sed -i "s/allowip2/$allowip2/g" ./nginx/helpers/wordpress.conf
 
 echo "User for filemanager basic auth:(eg developer)"
 read authuser
