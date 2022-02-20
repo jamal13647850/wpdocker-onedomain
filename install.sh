@@ -5,12 +5,12 @@ git clone https://github.com/prasathmani/tinyfilemanager.git ./dockerFiles/fm
 chmod +x ./nginx/helpers/cloudflare-ip-sync.sh
 ./nginx/helpers/cloudflare-ip-sync.sh
 
-echo "Allow IP 1 for filemanager"
+echo "Allow IP 1 for filemanager and install wordpress and recover backup"
 read allowip1
 sed -i "s/allowip1/$allowip1/g" ./nginx/helpers/filemanager.conf
 sed -i "s/allowip1/$allowip1/g" ./nginx/helpers/wordpress.conf
 
-echo "Allow IP 2 for filemanager"
+echo "Allow IP 2 for filemanager and install wordpress and recover backup"
 read allowip2
 sed -i "s/allowip2/$allowip2/g" ./nginx/helpers/filemanager.conf
 sed -i "s/allowip2/$allowip2/g" ./nginx/helpers/wordpress.conf
