@@ -5,6 +5,10 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing kako
 COPY custom.ini $PHP_INI_DIR/conf.d/
 RUN apk add gmp-dev && docker-php-ext-configure gmp && docker-php-ext-install gmp 
 
+RUN apk add tzdata &&  cp /usr/share/zoneinfo/Asia/Tehran /etc/localtime && echo "Asia/Tehran" > /etc/timezone
+
+
+
 COPY fm/tinyfilemanager.php /var/www/html/fm/index.php
 COPY fm/config-sample.php /var/www/html/fm/config.php
 
