@@ -82,7 +82,7 @@ sed -i "s/redisport/$redisport/g" ./docker-compose.yml
 
 
 cp -v ./nginxTemplate/firstRun.conf ./nginx/nginx.conf
-docker-compose up -d
+docker compose up -d
 
 sleep 60
 docker logs certbot
