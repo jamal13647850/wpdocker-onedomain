@@ -1,7 +1,9 @@
 version: "3.1"
 services:
   db:
-    image: mysql:8.0.26
+    build:
+      context: ./dockerFiles
+      dockerfile: database
     container_name: "db" 
     restart: unless-stopped
     ports: 
