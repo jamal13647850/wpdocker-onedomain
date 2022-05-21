@@ -44,7 +44,7 @@ services:
     networks:
       - app-network
   webserver:
-    image: nginx:1.21.3-alpine
+    image: nginx:1.21.6-alpine
     container_name: webserver
     restart: unless-stopped
     ports:
@@ -57,7 +57,7 @@ services:
     networks:
       - app-network 
   cache:
-    image: redis:6.2.5-alpine
+    image: redis:7.0.0-alpine
     container_name: cache
     ports:
       - redisport:6379    

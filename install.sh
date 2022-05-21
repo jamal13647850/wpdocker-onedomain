@@ -53,14 +53,17 @@ sed -i "s/exampledb/$MYSQL_DATABASE/g" ./docker-compose.yml
 echo "MYSQL_ROOT_PASSWORD:"
 read MYSQL_ROOT_PASSWORD
 sed -i "s/mysqlrootpassword/$MYSQL_ROOT_PASSWORD/g" ./.env
+sed -i "s/mysqlrootpassword/$MYSQL_ROOT_PASSWORD/g" ./dockerFiles/database
 
 echo "MYSQL_USER:"
 read MYSQL_USER
 sed -i "s/mysqluser/$MYSQL_USER/g" ./.env
+sed -i "s/mysqluser/$MYSQL_USER/g" ./dockerFiles/database
 
 echo "MYSQL_PASSWORD:"
 read MYSQL_PASSWORD
 sed -i "s/mysqlpassword/$MYSQL_PASSWORD/g" ./.env
+sed -i "s/mysqlpassword/$MYSQL_PASSWORD/g" ./dockerFiles/database
 
 echo "Host DB Port:(eg 3108)"
 read hostdbport
@@ -69,6 +72,7 @@ sed -i "s/hostdbport/$hostdbport/g" ./docker-compose.yml
 echo "WORDPRESS_TABLE_PREFIX:(eg wp)"
 read WORDPRESS_TABLE_PREFIX
 sed -i "s/wp/$WORDPRESS_TABLE_PREFIX/g" ./.env
+sed -i "s/wp/$WORDPRESS_TABLE_PREFIX/g" ./dockerFiles/database
 
 
 echo "Please enter redis password:"
