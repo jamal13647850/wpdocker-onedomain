@@ -44,7 +44,9 @@ services:
     networks:
       - app-network
   webserver:
-    image: nginx:1.21.6-alpine
+    build:
+      context: ./dockerFiles
+      dockerfile: webserver
     container_name: webserver
     restart: unless-stopped
     ports:
