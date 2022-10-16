@@ -5,6 +5,9 @@ git clone https://github.com/prasathmani/tinyfilemanager.git ./dockerFiles/fm
 chmod +x ./nginx/helpers/cloudflare-ip-sync.sh
 ./nginx/helpers/cloudflare-ip-sync.sh
 
+chmod +x ./nginx/helpers/arvancloud-ip-sync.sh
+./nginx/helpers/arvancloud-ip-sync.sh
+
 echo "Allow IP 1 for filemanager and install wordpress and recover backup"
 read allowip1
 sed -i "s/allowip1/$allowip1/g" ./nginx/helpers/filemanager.conf
